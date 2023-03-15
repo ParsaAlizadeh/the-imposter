@@ -2,6 +2,27 @@
 
 Easy way to write bunch of predicates and try all possible solutions
 
+## Example
+
+[example/problem06.hs]():
+```haskell
+module Main where
+
+import Math.TheImposter
+
+main = printAllSolutions $ setupProblem preds inits where
+  crowd = ["A", "B", "C"]                   -- all the people involved in the problem
+  preds =                                   -- list of predicates
+    [ "A" .: ("B" .== honest)               -- A says B is honest
+    , "B" .: ("guilty" .!= "A")             -- B says A is not guilty
+    , "C" .: ("guilty" .== "A")             -- C says A is guilty
+    , map (.== honest) crowd `count` 1      -- Exactly one of A, B, and C is honest
+    ]
+  inits = do
+    crowd `tryAll` [honest, lier]           -- People can be honests or liers
+    "guilty" `tryOne` crowd                 -- One of the people is guilty
+```
+
 ## Run Examples
 
 ```console
