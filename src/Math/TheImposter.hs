@@ -1,6 +1,9 @@
 module Math.TheImposter (
   honest,
   lier,
+  count,
+  atleast,
+  atmost,
   tryOne,
   tryAll,
   setupProblem,
@@ -53,6 +56,23 @@ said :: Var -> Predicate -> Predicate
 u `said` p = And
   ((u `Is` honest) `implies` p)
   ((u `Is` lier) `implies` Not p)
+
+count :: [Predicate] -> Int -> Predicate
+count ps 0 = foldr (And . Not) (Boolean True) ps
+count [] _ = Boolean False
+count (p:ps) n = Or
+    (p `And` count ps (n-1))
+    (Not p `And` count ps n)
+
+atleast :: [Predicate] -> Int -> Predicate
+atleast _ 0 = Boolean True
+atleast [] _ = Boolean False
+atleast (p:ps) n = Or
+    (p `And` atleast ps (n-1))
+    (Not p `And` atleast ps n)
+
+atmost :: [Predicate] -> Int -> Predicate
+atmost ps n = atleast (map Not ps) (length ps - n)
 
 maybeAnd :: Maybe Bool -> Maybe Bool -> Maybe Bool
 maybeAnd (Just False) _ = Just False
