@@ -1,0 +1,32 @@
+cabal-version:      2.4
+name:               the-imposter
+version:            0.1.0.0
+synopsis:
+    Easy way to write bunch of predicates and try all possible solutions
+
+-- A longer description of the package.
+-- description:
+homepage:
+
+-- A URL where users can report bugs.
+-- bug-reports:
+license:            MIT
+license-file:       LICENSE
+author:             Parsa Alizadeh
+maintainer:         parsa.alizadeh1@gmail.com
+
+-- A copyright notice.
+-- copyright:
+category:           Math
+
+library
+    exposed-modules:  MyLib
+
+    -- Modules included in this library but not exported.
+    -- other-modules:
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
+    build-depends:    base ^>=4.15.1.0
+    hs-source-dirs:   src
+    default-language: Haskell2010
