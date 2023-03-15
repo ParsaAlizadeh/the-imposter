@@ -20,7 +20,7 @@ maintainer:         parsa.alizadeh1@gmail.com
 category:           Math
 
 library
-    exposed-modules:  MyLib
+    exposed-modules:  Math.TheImposter
 
     -- Modules included in this library but not exported.
     -- other-modules:
